@@ -46,6 +46,7 @@ def resizeClicked(event = None):
 
     treeLabel.pack()
 
+##NEW
 def creaArbolClicked():
     miarbol.clear()
 
@@ -72,13 +73,16 @@ btnInsert = Button(buttonsFrame, text = 'insertar', command = insertClicked)
 btnDelete = Button(buttonsFrame, text = 'eliminar', command = deleteClicked)
 btnFind = Button(buttonsFrame, text = 'encontrar', command = findClicked)
 btnClear = Button(buttonsFrame, text = 'clear', command = clearClicked)
-btnAltArbol = Button(buttonsFrame, text = 'AltTree', command = creaArbolClicked)
 
 btnInsert.pack(side = TOP)
 btnDelete.pack()
 btnFind.pack()
 btnClear.pack()
+
+#NEW
+btnAltArbol = Button(buttonsFrame, text = 'AltTree', command = creaArbolClicked)
 btnAltArbol.pack()
+
 buttonsFrame.pack(side = BOTTOM)
 
 #txtFields: input
