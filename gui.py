@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import messagebox
 from PIL import Image, ImageTk
 from resizeimage import resizeimage
+import random as rd
 
 treeImage = None
 
@@ -16,26 +17,23 @@ def insertClicked():
             pintaArbol()
     else:
         messagebox.showwarning('Nodo Repetido', 'Se intentó insertar un nodo que ya existía')
-    inputField.delete(0,-1)
 
 def deleteClicked():
     if(miarbol.delete(int(inputField.get()))):
         pintaArbol()
     else:
         messagebox.showwarning('Nodo Repetido', 'Se intentó eliminar un nodo que no existe')
-    inputField.delete(0,-1)
 
 def findClicked():
     if(miarbol.find(int(inputField.get()))):
         messagebox.showinfo('Nodo Encontrado','Se encontró el nodo que buscabas!')
     else:
         messagebox.showwarning('Nodo no Encontrado', 'No se encontró el nodo que buscabas!')
-    inputField.delete(0,-1)
+
 
 def clearClicked():
     miarbol.clear()
     pintaArbol()
-    inputField.delete(0,-1)
 
 def resizeClicked(event = None):
     height = treeFrame.winfo_height()
@@ -48,6 +46,14 @@ def resizeClicked(event = None):
 
     treeLabel.pack()
 
+def creaArbolClicked():
+    miarbol.clear()
+
+    nums = rd.sample(range(1, 100), 10)
+    for i in nums:
+        miarbol.insert(int(i))
+
+    pintaArbol()
 
 #initialize
 window = Tk()
@@ -66,11 +72,13 @@ btnInsert = Button(buttonsFrame, text = 'insertar', command = insertClicked)
 btnDelete = Button(buttonsFrame, text = 'eliminar', command = deleteClicked)
 btnFind = Button(buttonsFrame, text = 'encontrar', command = findClicked)
 btnClear = Button(buttonsFrame, text = 'clear', command = clearClicked)
+btnAltArbol = Button(buttonsFrame, text = 'AltTree', command = creaArbolClicked)
 
 btnInsert.pack(side = TOP)
 btnDelete.pack()
 btnFind.pack()
 btnClear.pack()
+btnAltArbol.pack()
 buttonsFrame.pack(side = BOTTOM)
 
 #txtFields: input
