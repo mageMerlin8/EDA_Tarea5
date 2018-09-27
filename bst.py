@@ -46,6 +46,7 @@ class NodeB:
             resp += "\t" * (level) + "Nodo Izquierdo: \n" + self.left.__str__(level+1)
 
         return resp
+
 class ArbolB:
     def __init__(self, root = None):
         self.root = root
@@ -64,7 +65,8 @@ class ArbolB:
         nx.set_node_attributes(grafo, profundidades, 'depth')
         nx.draw_kamada_kawai(grafo, with_labels = True, node_size=1500,
                             node_color = listaProf,
-                            cmap = plt.cm.Blues)
+                            cmap = plt.cm.Blues,
+                            vmax = max(listaProf)+1)
 
     def outputTreeImage(self):
         if(self.root is None):

@@ -4,14 +4,11 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 from resizeimage import resizeimage
 
+treeImage = None
+
 def pintaArbol():
     miarbol.outputTreeImage()
-    treeImage = resizeimage.resize_contain(Image.open('currentTree.jpg'), [1000, 1000])
-    treePhoto = ImageTk.PhotoImage(treeImage)
-    treeLabel.config(image = treePhoto)
-    treeLabel.image = treePhoto
-
-    treeLabel.pack()
+    resizeClicked()
 
 def insertClicked():
     if(miarbol.insert(int(inputField.get()))):
@@ -40,15 +37,25 @@ def clearClicked():
     pintaArbol()
     inputField.delete(0,-1)
 
+def resizeClicked(event = None):
+    height = treeFrame.winfo_height()
+    width = treeFrame.winfo_width() - cosasFrame.winfo_width()
+    treeImage = Image.open('currentTree.jpg')
+    treeImage = resizeimage.resize_contain(treeImage, [width, height])
+    treePhoto = ImageTk.PhotoImage(treeImage)
+    treeLabel.config(image = treePhoto)
+    treeLabel.image = treePhoto
+
+    treeLabel.pack()
+
+
 #initialize
 window = Tk()
-cosasFrame = Frame(window)
+cosasFrame = Frame(window, width = 150)
 miarbol = bst.ArbolB()
 #config
 window.title("Hello")
 window.geometry('500x500')
-
-#frames
 
 
 #create widgets
@@ -77,15 +84,15 @@ inputField.pack(side = RIGHT)
 inputFrame.pack()
 
 #tree
-treeFrame = Frame(window, height = 100, width = 100)
-
+treeFrame = Frame(window)
+treeFrame.bind("<Configure>", resizeClicked)
 treeLabel = Label(treeFrame, image = None)
 
 treeLabel.pack()
 
 #organize
-treeFrame.pack(side = LEFT)
-cosasFrame.pack(side = RIGHT)
+treeFrame.pack(side = RIGHT,fill=BOTH, expand=1)
+cosasFrame.pack(side = LEFT)
 
 #run
 window.mainloop()
