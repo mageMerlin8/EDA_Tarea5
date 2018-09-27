@@ -30,7 +30,6 @@ def findClicked():
     else:
         messagebox.showwarning('Nodo no Encontrado', 'No se encontró el nodo que buscabas!')
 
-
 def clearClicked():
     miarbol.clear()
     pintaArbol()
