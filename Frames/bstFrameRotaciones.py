@@ -1,4 +1,4 @@
-from bstFramePlus import *
+from Frames.bstFramePlus import *
 
 class BSTFrameRotaciones(BSTFramePlus):
     def __init__(self, window):
