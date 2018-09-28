@@ -1,4 +1,4 @@
-from bstFrameRotaciones import *
+from Frames.bstFrameRotaciones import *
 
 window = Tk()
 window.geometry('500x500')

@@ -1,5 +1,7 @@
-from bstFrame import *
-
+from Frames.bstFrame import *
+"""
+Adds the functuionality to create new random trees
+"""
 class BSTFramePlus(BSTFrame):
     def __init__(self, window):
         BSTFrame.__init__(self, window)
