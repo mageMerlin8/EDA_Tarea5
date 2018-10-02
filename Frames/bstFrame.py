@@ -52,7 +52,7 @@ class BSTFrame(Frame):
         self.cosasFrame.pack(side = LEFT)
 
     def pintaArbol(self):
-        self.miarbol.outputTreeImage()
+        self.miarbol.outputTreeImage('currentTree.jpg')
         self.resizeClicked()
 
     def insertClicked(self):

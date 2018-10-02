@@ -1,6 +1,9 @@
 from Frames.bstFrame import *
+from pruebas.helper import mkdir_p
+
 """
 Adds the functuionality to create new random trees
+and for testing
 """
 class BSTFramePlus(BSTFrame):
     def __init__(self, window):
@@ -8,15 +11,22 @@ class BSTFramePlus(BSTFrame):
 
 
         self.randTreeFrame = Frame(self.cosasFrame, width = 50)
-        #NEW
+        #Random tree frame
         self.randLabel = Label(self.randTreeFrame, text = 'Generar un arbol binario:')
         self.intSpinBox = Spinbox(self.randTreeFrame, from_ = 2, to = 100)
-        self.btnAltArbol = Button(self.randTreeFrame, text = 'Genera!', command = self.creaArbolClicked)
+        self.btnAltArbol = Button(self.randTreeFrame, text = 'Genera!',
+                                  command = self.creaArbolClicked)
+
+        self.checkPruebasVal = IntVar()
+        self.checkPruebas = Checkbutton(self.randTreeFrame, text = 'Generar archivos de prueba',
+                                        command = self.pruebasToggled, variable = self.checkPruebasVal)
+
 
         self.randLabel.pack(side = TOP)
         self.intSpinBox.pack(side = LEFT)
         self.btnAltArbol.pack()
-
+        self.checkPruebas.pack(side = BOTTOM)
+        #pack frames:
         self.randTreeFrame.pack(side = BOTTOM)
 
     ##NEW
@@ -26,7 +36,27 @@ class BSTFramePlus(BSTFrame):
         nums = rd.sample(range(1, 99), num)
         for i in nums:
             self.miarbol.insert(int(i))
-            try: self.pintaArbol()
-            except:
-                print('no se puede')
         self.pintaArbol()
+
+    def creaArbolConPruebasClicked(self):
+            self.miarbol.clear()
+            num = int(self.intSpinBox.get())
+            nums = rd.sample(range(1, 99), num)
+
+            #new directory
+            curDir = 'pruebas/' + str(nums)
+            mkdir_p(curDir)
+            cont = 0
+            for i in nums:
+                self.miarbol.insert(int(i))
+                if(self.miarbol.root.left or self.miarbol.root.right):
+                    fileName = ('{}/' + str(cont) + '_' + str(i) + '.jpg').format(curDir)
+                    self.miarbol.outputTreeImage(fileName)
+                cont += 1
+            self.pintaArbol()
+
+    def pruebasToggled(self):
+        if self.checkPruebasVal.get() == 1:
+            self.btnAltArbol.config(command = self.creaArbolConPruebasClicked)
+        else:
+            self.btnAltArbol.config(command = self.creaArbolClicked)
