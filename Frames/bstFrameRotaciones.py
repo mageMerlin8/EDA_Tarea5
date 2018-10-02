@@ -18,18 +18,10 @@ class BSTFrameRotaciones(BSTFramePlus):
         self.btnRotRR.pack()
         self.frameRotaciones.pack()
 
-        self.btnInsert.config(command = self.insertClickedAvl)
 
     def calcFesClicked(self):
         self.miarbol.calculaFes(self.miarbol.root)
         self.pintaArbol()
-
-    def insertClickedAvl(self):
-        if(self.miarbol.insertAvl(int(self.inputField.get()))):
-            if( self.miarbol.root.right is not None or self.miarbol.root.left is not None):
-                self.pintaArbol()
-        else:
-            messagebox.showwarning('Nodo Repetido', 'Se intentó insertar un nodo que ya existía')
 
     def rotaLLClicked(self):
         self.miarbol.rotaLL()
