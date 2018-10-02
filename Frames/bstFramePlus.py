@@ -26,5 +26,7 @@ class BSTFramePlus(BSTFrame):
         nums = rd.sample(range(1, 99), num)
         for i in nums:
             self.miarbol.insert(int(i))
-
+            try: self.pintaArbol()
+            except:
+                print('no se puede')
         self.pintaArbol()
