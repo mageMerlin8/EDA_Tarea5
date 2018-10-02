@@ -78,12 +78,12 @@ class ArbolB:
                             cmap = plt.cm.Blues,
                             vmax = max(listaProf)+1)
 
-    def outputTreeImage(self):
+    def outputTreeImage(self, file):
         if(self.root is None):
             plt.clf()
         else:
             self.draw()
-        plt.savefig('currentTree.jpg', dpi = 300)
+        plt.savefig(file, dpi = 300)
 
     def find(self, dato):
         return self.__findR(dato, self.root, [])
