@@ -1,6 +1,6 @@
 from Frames.bstFrame import *
 from pruebas.helper import mkdir_p
-
+from trees import avl
 """
 Adds the functuionality to create new random trees
 and for testing
@@ -76,3 +76,8 @@ class BSTFramePlus(BSTFrame):
             for i in nums:
                 self.miarbol.insert(int(i))
             self.pintaArbol()
+
+class AVLFramePlus(BSTFramePlus):
+    def __init__(self, window):
+        BSTFramePlus.__init__(self, window)
+        self.miarbol = avl.ArbolAVL(self.miarbol.root)
