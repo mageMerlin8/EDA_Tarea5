@@ -6,7 +6,6 @@ class NodeAVL(NodeB):
         self.fe = None
         self.fe = self.getFE()
 
-
     def getFE(self):
         if(self.right):
             r = self.right.getHeight()
@@ -133,11 +132,11 @@ class ArbolAVL(ArbolB):
                     node.left.fe = 0
                     node.right.fe = 0
                 elif feY is 1:
-                    node.left.fe = 0
-                    node.right.fe = -1
+                    node.left.fe = -1
+                    node.right.fe = 0
                 elif feY is -1:
-                    node.left.fe = 1
-                    node.right.fe = 2
+                    node.left.fe = 0
+                    node.right.fe = 1
 
         elif node.fe < -1 :
             if(node.left.fe is -1):
@@ -157,11 +156,11 @@ class ArbolAVL(ArbolB):
                     node.left.fe = 0
                     node.right.fe = 0
                 elif feY is -1:
-                    node.left.fe = 1
-                    node.right.fe = 0
-                elif feY is 1:
                     node.left.fe = 0
-                    node.right.fe = -1
+                    node.right.fe = 1
+                elif feY is 1:
+                    node.left.fe = -1
+                    node.right.fe = 0
         return node
 
     def insert(self, dato):
