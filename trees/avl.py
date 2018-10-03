@@ -5,6 +5,7 @@ class NodeAVL(NodeB):
         NodeB.__init__(self, nodo.dato, right=nodo.right, left=nodo.left)
         self.fe = None
         self.fe = self.getFE()
+        self.feChanged = True
 
     def getFE(self):
         if(self.right):
@@ -90,24 +91,24 @@ class ArbolAVL(ArbolB):
         #insercion normal con modificacion de fe
         if not node:
             new = NodeAVL(NodeB(dato))
-            new.fe = None
             return new
 
         elif dato < node.dato:
             node.left = self.insertR(node.left, dato)
-            if node.left.fe is None:
-                node.left.fe = 0
+            if node.left.feChanged:
                 node.fe -= 1
-            elif node.left.fe is not 0:
-                node.fe -= 1
+                node.feChanged = True
+            else:
+                node.feChanged = False
 
         elif dato > node.dato:
             node.right = self.insertR(node.right, dato)
-            if node.right.fe is None:
-                node.right.fe = 0
+            if node.right.feChanged:
                 node.fe += 1
-            elif node.right.fe is not 0:
-                node.fe += 1
+                node.feChanged = True
+            else:
+                node.feChanged = False
+
         else:
             print('se intentó insertar un nodo que ya existe')
             return None
@@ -161,6 +162,7 @@ class ArbolAVL(ArbolB):
                 elif feY is 1:
                     node.left.fe = -1
                     node.right.fe = 0
+        if node.fe == 0: node.feChanged = False
         return node
 
     def insert(self, dato):

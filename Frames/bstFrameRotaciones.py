@@ -11,17 +11,10 @@ class BSTFrameRotaciones(BSTFramePlus):
         self.btnRotLL = Button(self.frameRotaciones, text = 'rota LL', command = self.rotaLLClicked)
         self.btnRotRR = Button(self.frameRotaciones, text = 'rota RR', command = self.rotaRRClicked)
 
-        self.btnCalcFes = Button(self.frameRotaciones, text = 'calcula fes', command = self.calcFesClicked)
-        self.btnCalcFes.pack()
-
         self.btnRotLL.pack()
         self.btnRotRR.pack()
         self.frameRotaciones.pack()
 
-
-    def calcFesClicked(self):
-        self.miarbol.calculaFes(self.miarbol.root)
-        self.pintaArbol()
 
     def rotaLLClicked(self):
         self.miarbol.rotaLL()
