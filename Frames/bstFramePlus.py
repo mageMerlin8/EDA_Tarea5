@@ -16,6 +16,8 @@ class BSTFramePlus(BSTFrame):
         self.intSpinBox = Spinbox(self.randTreeFrame, from_ = 2, to = 100)
         self.btnAltArbol = Button(self.randTreeFrame, text = 'Genera!',
                                   command = self.creaArbolClicked)
+        self.btnPrueba = Button(self.randTreeFrame, text = '<-TEST->',
+                                  command = self.TEST)
 
         self.checkPruebasVal = IntVar()
         self.checkPruebas = Checkbutton(self.randTreeFrame, text = 'Generar archivos de prueba',
@@ -26,6 +28,7 @@ class BSTFramePlus(BSTFrame):
         self.intSpinBox.pack(side = LEFT)
         self.btnAltArbol.pack()
         self.checkPruebas.pack(side = BOTTOM)
+        self.btnPrueba.pack(side = BOTTOM)
         #pack frames:
         self.randTreeFrame.pack(side = BOTTOM)
 
@@ -38,11 +41,13 @@ class BSTFramePlus(BSTFrame):
             self.miarbol.insert(int(i))
         self.pintaArbol()
 
-    def creaArbolConPruebasClicked(self):
+    def creaArbolConPruebasClicked(self, arr = None):
             self.miarbol.clear()
             num = int(self.intSpinBox.get())
-            nums = rd.sample(range(1, 99), num)
-
+            if not arr:
+                nums = rd.sample(range(1, 99), num)
+            else:
+                nums = arr
             #new directory
             curDir = 'pruebas/' + str(nums)
             mkdir_p(curDir)
@@ -60,3 +65,14 @@ class BSTFramePlus(BSTFrame):
             self.btnAltArbol.config(command = self.creaArbolConPruebasClicked)
         else:
             self.btnAltArbol.config(command = self.creaArbolClicked)
+## Pruebas
+    def TEST(self):
+        list = [10, 28, 96, 65, 95, 26, 23, 73, 12, 76, 80, 94, 77, 33, 50, 13, 32, 82, 22, 47, 20, 67, 62, 79, 8]
+        self.creaArbolConPruebasClickedTEST(list)
+
+    def creaArbolConPruebasClickedTEST(self, nums):
+            self.miarbol.clear()
+            cont = 0
+            for i in nums:
+                self.miarbol.insert(int(i))
+            self.pintaArbol()
