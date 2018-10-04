@@ -16,8 +16,8 @@ class BSTFramePlus(BSTFrame):
         self.intSpinBox = Spinbox(self.randTreeFrame, from_ = 2, to = 100)
         self.btnAltArbol = Button(self.randTreeFrame, text = 'Genera!',
                                   command = self.creaArbolClicked)
-        self.btnPrueba = Button(self.randTreeFrame, text = '<-TEST->',
-                                  command = self.TEST)
+        #self.btnPrueba = Button(self.randTreeFrame, text = '<-TEST->',
+        #                          command = self.TEST)
 
         self.checkPruebasVal = IntVar()
         self.checkPruebas = Checkbutton(self.randTreeFrame, text = 'Generar archivos de prueba',
@@ -28,7 +28,7 @@ class BSTFramePlus(BSTFrame):
         self.intSpinBox.pack(side = LEFT)
         self.btnAltArbol.pack()
         self.checkPruebas.pack(side = BOTTOM)
-        self.btnPrueba.pack(side = BOTTOM)
+        #self.btnPrueba.pack(side = BOTTOM)
         #pack frames:
         self.randTreeFrame.pack(side = BOTTOM)
 
